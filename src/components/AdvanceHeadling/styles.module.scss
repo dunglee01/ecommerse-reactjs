@@ -1,0 +1,35 @@
+@import '@styles/variable.module.scss';
+@import '@styles/mixin.module.scss';
+
+.container {
+    @include flex_box_custom(center, center, 0px);
+
+    margin: 65px 0px 15px;
+}
+
+.headline {
+    width: 100%;
+    height: 2px;
+    border-top: 1px solid #e1e1e1;
+    border-bottom: 1px solid #e1e1e1;
+    margin-top: 30px;
+}
+
+.containerMiddleBox {
+    @include flex_box_custom(center, center, 0px);
+    width: 60%;
+    padding: 0px 50px;
+    flex-direction: column;
+    line-height: 0px;
+}
+
+.des {
+    font-size: 14px;
+    color: $thr_color;
+    text-transform: uppercase;
+}
+
+.title {
+    font-size: 24px;
+    color: $primary_color;
+}

@@ -12,6 +12,11 @@ function HomePage() {
             <Info />
             <AdvanceHeadling />
             <HeadingListProducts />
+            <div
+                style={{
+                    height: '200px'
+                }}
+            ></div>
         </>
     );
 }

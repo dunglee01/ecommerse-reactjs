@@ -13,7 +13,8 @@
         "classnames": "^2.5.1",
         "normalize.css": "^8.0.1",
         "react": "^18.2.0",
-        "react-dom": "^18.2.0"
+        "react-dom": "^18.2.0",
+        "react-router-dom": "^6.26.2"
     },
     "devDependencies": {
         "@types/react": "^18.0.27",

@@ -6,6 +6,10 @@ import Logo from '@icons/images/Logo-retina.png';
 import reLoadIcon from '@icons/svgs/reloadIcon.svg';
 import heartIcon from '@icons/svgs/heart.svg';
 import cartIcon from '@icons/svgs/cartIcon.svg';
+import useScrollHandling from '@/hooks/useScrollHandling';
+import { useEffect } from 'react';
+import { useState } from 'react';
+import classNames from 'classnames';
 
 function MyHeader() {
     const {
@@ -13,10 +17,32 @@ function MyHeader() {
         containerMenu,
         containerHeader,
         containerBox,
-        container
+        container,
+        fixedHeader,
+        topHeader
     } = styles;
+
+    const { scrollPosition } = useScrollHandling();
+    const [fixedPosition, setFixedPosition] = useState(false);
+
+    useEffect(() => {
+        // if (scrollPosition > 80) {
+        //     setFixedPosition(true);
+        // } else {
+        //     setFixedPosition(false);
+        // }
+
+        // setFixedPosition(scrollPosition > 80 ? true : false);
+
+        setFixedPosition(scrollPosition > 80);
+    }, [scrollPosition]);
+
     return (
-        <div className={container}>
+        <div
+            className={classNames(container, topHeader, {
+                [fixedHeader]: fixedPosition
+            })}
+        >
             <div className={containerHeader}>
                 <div className={containerBox}>
                     <div className={containerBoxIcon}>

@@ -1,0 +1,28 @@
+.box {
+    margin-bottom: 10px;
+}
+
+.labelC {
+    margin-bottom: 5px;
+}
+
+.boxInput {
+    height: auto;
+    width: 100%;
+    position: relative;
+
+    input {
+        width: 100%;
+        padding: 10px 0px 10px 10px;
+        border: 1px solid #ccc;
+        outline: none;
+        padding-left: 10px;
+    }
+
+    .boxIcon {
+        position: absolute;
+        top: 12px;
+        right: 0;
+        cursor: pointer;
+    }
+}

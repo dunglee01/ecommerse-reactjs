@@ -12,7 +12,13 @@ function Banner() {
                     beautiful.
                 </div>
 
-                <Button content={'Go to shop'} />
+                <div
+                    style={{
+                        width: '172px'
+                    }}
+                >
+                    <Button content={'Go to shop'} />
+                </div>
             </div>
         </div>
     );

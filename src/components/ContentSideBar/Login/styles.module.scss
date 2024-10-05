@@ -1,0 +1,26 @@
+@import '@styles/mixin.module.scss';
+
+.container {
+    padding: 20px 30px 0px 30px;
+
+    p {
+        font-size: 17px;
+    }
+
+    .boxTitle {
+        @include flex_box_custom(center, center, 0px);
+        flex-direction: column;
+    }
+
+    .boxSubmit {
+        margin: 30px 0;
+    }
+
+    .forgotPassword {
+        text-align: center;
+        &:hover {
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    }
+}

@@ -24,7 +24,8 @@
 
     .boxBtn {
         @include flex_box_custom(center, center, 0px);
-        margin-top: 30px;
+        width: 172px;
+        margin: 30px auto;
     }
 
     .boxImage {

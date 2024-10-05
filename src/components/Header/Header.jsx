@@ -10,6 +10,8 @@ import useScrollHandling from '@/hooks/useScrollHandling';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import classNames from 'classnames';
+import { useContext } from 'react';
+import { SideBarContext } from '@/contexts/SideBarProvider';
 
 function MyHeader() {
     const {
@@ -24,6 +26,12 @@ function MyHeader() {
 
     const { scrollPosition } = useScrollHandling();
     const [fixedPosition, setFixedPosition] = useState(false);
+    const { setType, setIsOpen } = useContext(SideBarContext);
+
+    const handleClickShowContentSideBar = (type) => {
+        setType(type);
+        setIsOpen(true);
+    };
 
     useEffect(() => {
         // if (scrollPosition > 80) {
@@ -85,18 +93,27 @@ function MyHeader() {
                             height={26}
                             src={reLoadIcon}
                             alt='reLoadIcon'
+                            onClick={() =>
+                                handleClickShowContentSideBar('compare')
+                            }
                         />
                         <img
                             width={26}
                             height={26}
                             src={heartIcon}
                             alt='reLoadIcon'
+                            onClick={() =>
+                                handleClickShowContentSideBar('wishlist')
+                            }
                         />
                         <img
                             width={26}
                             height={26}
                             src={cartIcon}
                             alt='reLoadIcon'
+                            onClick={() =>
+                                handleClickShowContentSideBar('cart')
+                            }
                         />
                     </div>
                 </div>

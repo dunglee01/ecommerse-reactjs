@@ -7,23 +7,10 @@ import Login from '@components/ContentSideBar/Login/Login';
 
 function SideBar() {
     const { container, overlay, sideBar, slideSideBar, boxIcon } = styles;
-    const { isOpen, setIsOpen, type } = useContext(SideBarContext);
+    const { isOpen, setIsOpen } = useContext(SideBarContext);
 
     const handleToggle = () => {
         setIsOpen(!isOpen);
-    };
-
-    const handleRenderContent = (type) => {
-        switch (type) {
-            case 'login':
-                return <Login />;
-            case 'compare':
-                return 'compare';
-            case 'wishlist':
-                return 'wishlist';
-            case 'cart':
-                return 'cart';
-        }
     };
 
     return (
@@ -44,7 +31,8 @@ function SideBar() {
                         <TfiClose />
                     </div>
                 )}
-                {handleRenderContent(type)}
+
+                <Login />
             </div>
         </div>
     );

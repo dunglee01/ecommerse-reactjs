@@ -1,46 +1,24 @@
 import InputCommon from '@components/InputCommon/InputCommon';
 import styles from './styles.module.scss';
-import { PiUserCircleThin } from 'react-icons/pi';
 import Button from '@components/Button/Button';
 
 function Login() {
-    const { container, boxTitle, boxSubmit, forgotPassword } = styles;
+    const { container, title, boxRememberMe, lostPw } = styles;
     return (
         <div className={container}>
-            <div className={boxTitle}>
-                <PiUserCircleThin
-                    style={{
-                        fontSize: '40px'
-                    }}
-                />
-                <div>SIGN IN</div>
+            <div className={title}>SIGN IN</div>
+
+            <InputCommon label='Email' type='text' isRequired />
+            <InputCommon label='Password' type='password' isRequired />
+
+            <div className={boxRememberMe}>
+                <input type='checkbox' />
+                <span>Remember me</span>
             </div>
 
-            <div
-                style={{
-                    marginTop: '30px'
-                }}
-            >
-                <InputCommon label={'Username or email'} type={'text'} />
-                <InputCommon label={'Password'} type={'password'} />
+            <Button content={'LOGIN'} />
 
-                <div>
-                    <input type='checkbox' />
-                    <span
-                        style={{
-                            marginLeft: '8px'
-                        }}
-                    >
-                        Remember me
-                    </span>
-                </div>
-
-                <div className={boxSubmit}>
-                    <Button content={'LOGIN'} />
-                </div>
-
-                <div className={forgotPassword}>Lost your password?</div>
-            </div>
+            <div className={lostPw}>Lost your password?</div>
         </div>
     );
 }

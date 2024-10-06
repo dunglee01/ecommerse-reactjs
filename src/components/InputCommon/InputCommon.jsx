@@ -1,32 +1,30 @@
 import { useState } from 'react';
 import styles from './styles.module.scss';
-import { LiaEyeSolid } from 'react-icons/lia';
-import { LiaEyeSlashSolid } from 'react-icons/lia';
+import { FiEye } from 'react-icons/fi';
+import { FiEyeOff } from 'react-icons/fi';
 
-function InputCommon({ label, type }) {
-    const { labelC, boxInput, boxIcon, box } = styles;
-    const [isHiddenPassword, setIsHiddenPassword] = useState(true);
+function InputCommon({ label, type, isRequired = false }) {
+    const { labelInput, boxInput, container, boxIcon } = styles;
+    const [showPassword, setShowPassword] = useState(false);
 
     const isPassword = type === 'password';
-    const isShowPassword =
-        type === 'password' && !isHiddenPassword ? 'text' : type;
+    const isShowTextPassword =
+        type === 'password' && showPassword ? 'text' : type;
 
-    const handleTogglePassword = () => {
-        setIsHiddenPassword(!isHiddenPassword);
+    const handleShowPassword = () => {
+        setShowPassword(!showPassword);
     };
 
     return (
-        <div className={box}>
-            <div className={labelC}>{label}</div>
+        <div className={container}>
+            <div className={labelInput}>
+                {label} {isRequired && <span>*</span>}
+            </div>
             <div className={boxInput}>
-                <input type={isShowPassword} />
+                <input type={isShowTextPassword} />
                 {isPassword && (
-                    <div className={boxIcon} onClick={handleTogglePassword}>
-                        {isHiddenPassword ? (
-                            <LiaEyeSolid />
-                        ) : (
-                            <LiaEyeSlashSolid />
-                        )}
+                    <div className={boxIcon} onClick={handleShowPassword}>
+                        {showPassword ? <FiEyeOff /> : <FiEye />}
                     </div>
                 )}
             </div>

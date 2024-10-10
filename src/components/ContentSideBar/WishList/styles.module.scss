@@ -3,7 +3,12 @@
 .container {
     @include flex_box_custom(space-between, unset, 0px);
 
-    flex-direction: column;
     padding: 20px 20px 0 20px;
     height: 95%;
+    flex-direction: column;
+
+    .boxBtn {
+        @include flex_box_custom(space-between, unset, 10px);
+        flex-direction: column;
+    }
 }

@@ -2,7 +2,7 @@ import styles from './styles.module.scss';
 import { IoCloseOutline } from 'react-icons/io5';
 
 function ItemProduct() {
-    const { container, boxContent, title, price, boxClose } = styles;
+    const { container, boxContent, title, price, boxClose, size } = styles;
     return (
         <div className={container}>
             <img
@@ -21,7 +21,9 @@ function ItemProduct() {
 
             <div className={boxContent}>
                 <div className={title}>title of product</div>
+                <div className={size}>Size:M</div>
                 <div className={price}>$119.99</div>
+                <div className={price}>SKU: 122349</div>
             </div>
         </div>
     );

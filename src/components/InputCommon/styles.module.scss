@@ -9,6 +9,10 @@
         margin-bottom: 5px;
     }
 
+    .labelInput.errMsg {
+        color: red;
+    }
+
     .boxInput {
         width: 100%;
         position: relative;
@@ -20,11 +24,21 @@
             padding: 10px 0 10px 10px;
         }
 
+        input.isErrInput {
+            border: 1px solid red;
+        }
+
         .boxIcon {
             position: absolute;
             top: 12px;
             right: 0;
             cursor: pointer;
+        }
+
+        .errMsg {
+            font-size: 12px;
+            color: red;
+            margin-top: 3px;
         }
     }
 }

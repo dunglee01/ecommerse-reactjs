@@ -6,7 +6,9 @@ import * as Yup from 'yup';
 import { useState } from 'react';
 import { useContext } from 'react';
 import { ToastContext } from '@/contexts/ToastProvider';
-import { register } from '@/apis/authService';
+import { register, signIn, getInfo } from '@/apis/authService';
+import Cookies from 'js-cookie';
+import { useEffect } from 'react';
 
 function Login() {
     const { container, title, boxRememberMe, lostPw } = styles;
@@ -35,10 +37,11 @@ function Login() {
         onSubmit: async (values) => {
             if (isLoading) return;
 
-            if (isRegister) {
-                const { email: username, password } = values;
+            const { email: username, password } = values;
 
-                setIsLoading(true);
+            setIsLoading(true);
+
+            if (isRegister) {
                 await register({ username, password })
                     .then((res) => {
                         toast.success(res.data.message);
@@ -49,6 +52,22 @@ function Login() {
                         setIsLoading(false);
                     });
             }
+
+            if (!isRegister) {
+                await signIn({ username, password })
+                    .then((res) => {
+                        setIsLoading(false);
+                        const { id, token, refreshToken } = res.data;
+
+                        Cookies.set('token', token);
+                        Cookies.set('refreshToken', refreshToken);
+                        toast.success('Sign in successfully!');
+                    })
+                    .catch((err) => {
+                        setIsLoading(false);
+                        toast.error('Sign in failed!');
+                    });
+            }
         }
     });
 
@@ -56,6 +75,10 @@ function Login() {
         setIsRegister(!isRegister);
         formik.resetForm();
     };
+
+    useEffect(() => {
+        getInfo();
+    }, []);
 
     return (
         <div className={container}>

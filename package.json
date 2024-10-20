@@ -12,6 +12,7 @@
         "axios": "^1.7.7",
         "classnames": "^2.5.1",
         "formik": "^2.4.6",
+        "js-cookie": "^3.0.5",
         "normalize.css": "^8.0.1",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",

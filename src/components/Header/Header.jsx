@@ -3,12 +3,9 @@ import Menu from './Menu/Menu';
 import { dataBoxIcon, dataMenu } from './constants';
 import styles from './styles.module.scss';
 import Logo from '@icons/images/Logo-retina.png';
-import reLoadIcon from '@icons/svgs/reloadIcon.svg';
 import { TfiReload } from 'react-icons/tfi';
 import { BsHeart } from 'react-icons/bs';
 import { PiShoppingCart } from 'react-icons/pi';
-import heartIcon from '@icons/svgs/heart.svg';
-import cartIcon from '@icons/svgs/cartIcon.svg';
 import useScrollHandling from '@/hooks/useScrollHandling';
 import { useEffect } from 'react';
 import { useState } from 'react';
@@ -37,14 +34,6 @@ function MyHeader() {
     };
 
     useEffect(() => {
-        // if (scrollPosition > 80) {
-        //     setFixedPosition(true);
-        // } else {
-        //     setFixedPosition(false);
-        // }
-
-        // setFixedPosition(scrollPosition > 80 ? true : false);
-
         setFixedPosition(scrollPosition > 80);
     }, [scrollPosition]);
 

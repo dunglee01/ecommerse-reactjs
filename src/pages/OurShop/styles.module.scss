@@ -1,0 +1,57 @@
+@import '@styles/variable.module.scss';
+@import '@styles/mixin.module.scss';
+
+.container {
+    padding-top: 83px;
+
+    .functionBox {
+        @include flex_box_custom(space-between, center, 0px);
+        color: $seconddary_color;
+        font-size: 14px;
+        font-weight: 300;
+
+        .specialText {
+            color: $primary_color;
+            font-weight: 400;
+        }
+
+        .btnBack {
+            cursor: pointer;
+        }
+    }
+}
+
+.containerBanner {
+    background-image: url('https://xstore.8theme.com/elementor2/marseille04/wp-content/uploads/sites/2/2022/12/Background.jpeg');
+    height: 279px;
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-top: 10px;
+
+    .contentBox {
+        @include flex_box_custom(space-between, center, 30px);
+        flex-direction: column;
+        padding: 60px 0;
+
+        .countDownBox {
+            @include flex_box_custom(center, center, 10px);
+        }
+
+        .countDownBox > span {
+            margin-top: 0px;
+            border: 1px solid #e1e1e1;
+        }
+
+        .title {
+            font-size: 28px;
+            color: $four_color;
+            font-weight: 400;
+        }
+
+        .boxBtn {
+            width: 160px;
+        }
+    }
+}

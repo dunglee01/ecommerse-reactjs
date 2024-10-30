@@ -55,3 +55,38 @@
         }
     }
 }
+
+.containerFilter {
+    @include flex_box_custom(space-between, center, 0px);
+
+    margin-top: 15px;
+
+    .boxLeft {
+        @include flex_box_custom(center, center, 20px);
+    }
+
+    .boxIcon {
+        @include flex_box_custom(center, center, 10px);
+    }
+
+    .selectBox {
+        border: 1px solid #e1e1e1;
+        padding: 5px;
+        color: $seconddary_color;
+    }
+
+    .selectBox.sort {
+        width: 275px;
+    }
+
+    .selectBox.show {
+        width: 83px;
+    }
+}
+
+.containerProduct {
+    @include flex_box_custom(space-between, center, 10px);
+
+    margin-top: 10px;
+    flex-wrap: wrap;
+}

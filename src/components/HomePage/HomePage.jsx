@@ -14,7 +14,13 @@ function HomePage() {
     const [listProducts, setListProducts] = useState([]);
 
     useEffect(() => {
-        getProducts().then((res) => {
+        const query = {
+            page: 1,
+            limit: 10,
+            sortType: 0
+        };
+
+        getProducts(query).then((res) => {
             setListProducts(res.contents);
         });
     }, []);

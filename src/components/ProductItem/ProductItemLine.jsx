@@ -5,14 +5,7 @@ import cartIcon from '@icons/svgs/cartIcon.svg';
 import cls from 'classnames';
 import Button from '@components/Button/Button';
 
-function ProductItem({
-    src,
-    prevSrc,
-    name,
-    price,
-    isNotHomePage = false,
-    details
-}) {
+function ProductItemLine({ details }) {
     const {
         boxImg,
         showImgWhenHover,
@@ -22,17 +15,18 @@ function ProductItem({
         priceCl,
         boxSize,
         size,
-        textCenter,
-        boxBtn
+        boxBtn,
+        containerProductLine,
+        content
     } = styles;
 
-    const { size: sizes } = details;
+    const { size: sizes, images, name, price } = details;
 
     return (
-        <div>
+        <div className={containerProductLine}>
             <div className={boxImg}>
-                <img src={src} alt='' />
-                <img src={prevSrc} alt='' className={showImgWhenHover} />
+                <img src={images[0]} alt='' />
+                <img src={images[1]} alt='' className={showImgWhenHover} />
 
                 <div className={showFncWhenHover}>
                     <div className={boxIcon}>
@@ -50,7 +44,7 @@ function ProductItem({
                 </div>
             </div>
 
-            {isNotHomePage && (
+            <div className={content}>
                 <div className={boxSize}>
                     {sizes.map((item, index) => {
                         return (
@@ -60,24 +54,16 @@ function ProductItem({
                         );
                     })}
                 </div>
-            )}
-            <div className={cls(title, { [textCenter]: isNotHomePage })}>
-                {name}
-            </div>
-            <div className={cls(priceCl, { [textCenter]: isNotHomePage })}>
-                Brand 01
-            </div>
-            <div className={cls(priceCl, { [textCenter]: isNotHomePage })}>
-                ${price}
-            </div>
 
-            {isNotHomePage && (
+                <div className={cls(title)}>{name}</div>
+                <div>Brand 01</div>
+                <div className={cls(priceCl)}>${price}</div>
                 <div className={boxBtn}>
                     <Button content={'ADD TO CART'} />
                 </div>
-            )}
+            </div>
         </div>
     );
 }
 
-export default ProductItem;
+export default ProductItemLine;

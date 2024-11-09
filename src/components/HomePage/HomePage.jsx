@@ -15,9 +15,9 @@ function HomePage() {
 
     useEffect(() => {
         const query = {
+            sortType: 0,
             page: 1,
-            limit: 10,
-            sortType: 0
+            limit: 10
         };
 
         getProducts(query).then((res) => {

@@ -4,15 +4,21 @@ import heartIcon from '@icons/svgs/heart.svg';
 import cartIcon from '@icons/svgs/cartIcon.svg';
 import cls from 'classnames';
 import Button from '@components/Button/Button';
+import { useContext } from 'react';
+import { OurShopContext } from '@/contexts/OurShopProvider';
+import { useState } from 'react';
 
 function ProductItem({
     src,
     prevSrc,
     name,
     price,
-    isNotHomePage = false,
-    details
+    details,
+    isHomepage = true
 }) {
+    const { isShowGrid } = useContext(OurShopContext);
+    const [sizeChoose, setSizeChoose] = useState('');
+
     const {
         boxImg,
         showImgWhenHover,
@@ -23,14 +29,26 @@ function ProductItem({
         boxSize,
         size,
         textCenter,
-        boxBtn
+        boxBtn,
+        content,
+        containerItem,
+        leftBtn,
+        largImg,
+        isActiveSize,
+        btnClear
     } = styles;
 
-    const { size: sizes } = details;
+    const handleChooseSize = (size) => {
+        setSizeChoose(size);
+    };
+
+    const handleClearSize = () => {
+        setSizeChoose('');
+    };
 
     return (
-        <div>
-            <div className={boxImg}>
+        <div className={isShowGrid ? '' : containerItem}>
+            <div className={cls(boxImg, { [largImg]: !isShowGrid })}>
                 <img src={src} alt='' />
                 <img src={prevSrc} alt='' className={showImgWhenHover} />
 
@@ -50,32 +68,63 @@ function ProductItem({
                 </div>
             </div>
 
-            {isNotHomePage && (
-                <div className={boxSize}>
-                    {sizes.map((item, index) => {
-                        return (
-                            <div className={size} key={index}>
-                                {item.name}
-                            </div>
-                        );
-                    })}
-                </div>
-            )}
-            <div className={cls(title, { [textCenter]: isNotHomePage })}>
-                {name}
-            </div>
-            <div className={cls(priceCl, { [textCenter]: isNotHomePage })}>
-                Brand 01
-            </div>
-            <div className={cls(priceCl, { [textCenter]: isNotHomePage })}>
-                ${price}
-            </div>
+            <div className={isShowGrid ? '' : content}>
+                {!isHomepage && (
+                    <div className={boxSize}>
+                        {details.size.map((item, index) => {
+                            return (
+                                <div
+                                    key={index}
+                                    className={cls(size, {
+                                        [isActiveSize]: sizeChoose === item.name
+                                    })}
+                                    onClick={() => handleChooseSize(item.name)}
+                                >
+                                    {item.name}
+                                </div>
+                            );
+                        })}
+                    </div>
+                )}
 
-            {isNotHomePage && (
-                <div className={boxBtn}>
-                    <Button content={'ADD TO CART'} />
+                {sizeChoose && (
+                    <div className={btnClear} onClick={() => handleClearSize()}>
+                        clear
+                    </div>
+                )}
+
+                <div
+                    className={cls(title, {
+                        [textCenter]: !isHomepage
+                    })}
+                >
+                    {name}
                 </div>
-            )}
+                {!isHomepage && (
+                    <div
+                        className={textCenter}
+                        style={{
+                            color: '#888'
+                        }}
+                    >
+                        Brand 01
+                    </div>
+                )}
+                <div
+                    className={cls(priceCl, { [textCenter]: !isHomepage })}
+                    style={{
+                        color: isHomepage ? '#333' : '#888'
+                    }}
+                >
+                    ${price}
+                </div>
+
+                {!isHomepage && (
+                    <div className={cls(boxBtn, { [leftBtn]: !isShowGrid })}>
+                        <Button content={'ADD TO CART'} />
+                    </div>
+                )}
+            </div>
         </div>
     );
 }

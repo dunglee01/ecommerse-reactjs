@@ -7,6 +7,7 @@ import Button from '@components/Button/Button';
 import { useContext } from 'react';
 import { OurShopContext } from '@/contexts/OurShopProvider';
 import { useState } from 'react';
+import { useEffect } from 'react';
 
 function ProductItem({
     src,
@@ -16,8 +17,10 @@ function ProductItem({
     details,
     isHomepage = true
 }) {
-    const { isShowGrid } = useContext(OurShopContext);
+    // const { isShowGrid } = useContext(OurShopContext);
     const [sizeChoose, setSizeChoose] = useState('');
+    const ourShopStore = useContext(OurShopContext);
+    const [isShowGrid, setIsShowGrid] = useState(ourShopStore?.isShowGrid);
 
     const {
         boxImg,
@@ -46,9 +49,21 @@ function ProductItem({
         setSizeChoose('');
     };
 
+    useEffect(() => {
+        if (isHomepage) {
+            setIsShowGrid(true);
+        } else {
+            setIsShowGrid(ourShopStore?.isShowGrid);
+        }
+    }, [isHomepage, ourShopStore?.isShowGrid]);
+
     return (
         <div className={isShowGrid ? '' : containerItem}>
-            <div className={cls(boxImg, { [largImg]: !isShowGrid })}>
+            <div
+                className={cls(boxImg, {
+                    [largImg]: !isShowGrid
+                })}
+            >
                 <img src={src} alt='' />
                 <img src={prevSrc} alt='' className={showImgWhenHover} />
 
@@ -120,7 +135,11 @@ function ProductItem({
                 </div>
 
                 {!isHomepage && (
-                    <div className={cls(boxBtn, { [leftBtn]: !isShowGrid })}>
+                    <div
+                        className={cls(boxBtn, {
+                            [leftBtn]: !isShowGrid
+                        })}
+                    >
                         <Button content={'ADD TO CART'} />
                     </div>
                 )}

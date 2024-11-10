@@ -4,13 +4,21 @@ import { OurShopContext } from '@/contexts/OurShopProvider';
 import ProductItem from '@components/ProductItem/ProductItem';
 import styles from '../styles.module.scss';
 import Button from '@components/Button/Button';
+import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 
 function ListProducts() {
-    const { containerProduct } = styles;
-    const { products, isShowGrid, isLoading } = useContext(OurShopContext);
+    const { containerProduct, sectionListProduct, rotate } = styles;
+    const {
+        products,
+        isShowGrid,
+        isLoading,
+        handleLoadMore,
+        total,
+        isLoadMore
+    } = useContext(OurShopContext);
 
     return (
-        <>
+        <div className={sectionListProduct}>
             <MainLayout>
                 {isLoading ? (
                     <>Loading...</>
@@ -29,18 +37,31 @@ function ListProducts() {
                                 />
                             ))}
                         </div>
-                        <div
-                            style={{
-                                width: '180px',
-                                margin: '50px auto'
-                            }}
-                        >
-                            <Button content={'LOAD MORE PRODUCT'} />
-                        </div>
+                        {products.length < total && (
+                            <div
+                                style={{
+                                    width: '180px',
+                                    margin: '50px auto'
+                                }}
+                            >
+                                <Button
+                                    content={
+                                        isLoadMore ? (
+                                            <AiOutlineLoading3Quarters
+                                                className={rotate}
+                                            />
+                                        ) : (
+                                            'LOAD MORE PRODUCT'
+                                        )
+                                    }
+                                    onClick={handleLoadMore}
+                                />
+                            </div>
+                        )}
                     </>
                 )}
             </MainLayout>
-        </>
+        </div>
     );
 }
 

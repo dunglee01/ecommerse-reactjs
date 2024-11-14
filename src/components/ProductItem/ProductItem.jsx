@@ -85,7 +85,6 @@ function ProductItem({
             .then((res) => {
                 setIsOpen(true);
                 setType('cart');
-                toast.success('Add Product to cart successfully!');
                 setIsLoading(false);
                 handleGetListProductsCart(userId, 'cart');
             })

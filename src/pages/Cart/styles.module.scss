@@ -1,0 +1,61 @@
+@import '@styles/variable.module.scss';
+@import '@styles/mixin.module.scss';
+
+.container {
+    padding-top: 83px;
+}
+
+.containerSteps {
+    @include flex_box_custom(center, center, 0px);
+
+    background-color: #fafafa;
+    padding: 35px 0;
+    flex-direction: column;
+
+    .steps {
+        @include flex_box_custom(center, center, 30px);
+
+        .line {
+            min-width: 120px;
+            height: 1px;
+            background-color: #e1e1e1;
+        }
+    }
+
+    .textNoti {
+        font-size: 16px;
+        color: $four_color;
+        font-weight: 400;
+        padding-top: 35px;
+    }
+
+    .stepper {
+        @include flex_box_custom(center, center, 10px);
+        text-transform: uppercase;
+
+        .numberStep {
+            @include flex_box_custom(center, center, 0px);
+            background-color: #333;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            color: $white_color;
+        }
+
+        .isDisableNumber {
+            background-color: transparent;
+            border: 1px solid #e1e1e1;
+            color: #888;
+        }
+
+        .textStep {
+            color: $four_color;
+            font-size: 21px;
+            font-weight: 300;
+        }
+
+        .isDisableText {
+            color: #9a9a9a;
+        }
+    }
+}

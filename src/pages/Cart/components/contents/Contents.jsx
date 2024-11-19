@@ -1,5 +1,19 @@
+import CartTable from '@/pages/Cart/components/contents/CartTable';
+import styles from '../../styles.module.scss';
+import CartSummary from '@/pages/Cart/components/contents/CartSummary';
+
 function Contents() {
-    return <div>Contents</div>;
+    const { containerContents } = styles;
+
+    return (
+        <div className={containerContents}>
+            <div>
+                <CartTable />
+            </div>
+
+            <CartSummary />
+        </div>
+    );
 }
 
 export default Contents;

@@ -36,6 +36,11 @@ function Cart() {
         return acc + item.total;
     }, 0);
 
+    const handleNavigateToCart = () => {
+        navigate('/cart');
+        setIsOpen(false);
+    };
+
     return (
         <div
             className={cls(container, {
@@ -78,7 +83,10 @@ function Cart() {
                         </div>
 
                         <div className={boxBtn}>
-                            <Button content={'VIEW CART'} />
+                            <Button
+                                content={'VIEW CART'}
+                                onClick={handleNavigateToCart}
+                            />
                             <Button content={'CHECKOUT'} isPriamry={false} />
                         </div>
                     </div>

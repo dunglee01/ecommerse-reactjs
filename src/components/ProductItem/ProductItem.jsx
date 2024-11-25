@@ -1,18 +1,16 @@
-import styles from './styles.module.scss';
-import reLoadIcon from '@icons/svgs/reloadIcon.svg';
-import heartIcon from '@icons/svgs/heart.svg';
-import cartIcon from '@icons/svgs/cartIcon.svg';
-import cls from 'classnames';
-import Button from '@components/Button/Button';
-import { useContext } from 'react';
+import { addProductToCart } from '@/apis/cartService';
 import { OurShopContext } from '@/contexts/OurShopProvider';
-import { useState } from 'react';
-import { useEffect } from 'react';
-import Cookies from 'js-cookie';
 import { SideBarContext } from '@/contexts/SideBarProvider';
 import { ToastContext } from '@/contexts/ToastProvider';
-import { addProductToCart } from '@/apis/cartService';
+import Button from '@components/Button/Button';
 import LoadingTextCommon from '@components/LoadingTextCommon/LoadingTextCommon';
+import cls from 'classnames';
+import Cookies from 'js-cookie';
+import { useContext, useEffect, useState } from 'react';
+import { CiHeart } from 'react-icons/ci';
+import { LiaEyeSolid, LiaShoppingBagSolid } from 'react-icons/lia';
+import { TfiReload } from 'react-icons/tfi';
+import styles from './styles.module.scss';
 
 function ProductItem({
     src,
@@ -27,7 +25,7 @@ function ProductItem({
     const ourShopStore = useContext(OurShopContext);
     const [isShowGrid, setIsShowGrid] = useState(ourShopStore?.isShowGrid);
     const userId = Cookies.get('userId');
-    const { setIsOpen, setType, handleGetListProductsCart } =
+    const { setIsOpen, setType, handleGetListProductsCart, setDetailProduct } =
         useContext(SideBarContext);
     const { toast } = useContext(ToastContext);
     const [isLoading, setIsLoading] = useState(false);
@@ -94,6 +92,12 @@ function ProductItem({
             });
     };
 
+    const handleShowDetailProductSideBar = () => {
+        setIsOpen(true);
+        setType('detail');
+        setDetailProduct(details);
+    };
+
     useEffect(() => {
         if (isHomepage) {
             setIsShowGrid(true);
@@ -114,16 +118,35 @@ function ProductItem({
 
                 <div className={showFncWhenHover}>
                     <div className={boxIcon}>
-                        <img src={cartIcon} alt='' />
+                        <LiaShoppingBagSolid
+                            style={{
+                                fontSize: '20px'
+                            }}
+                        />
                     </div>
                     <div className={boxIcon}>
-                        <img src={heartIcon} alt='' />
+                        <CiHeart
+                            style={{
+                                fontSize: '25px'
+                            }}
+                        />
                     </div>
                     <div className={boxIcon}>
-                        <img src={reLoadIcon} alt='' />
+                        <TfiReload
+                            style={{
+                                fontSize: '20px'
+                            }}
+                        />
                     </div>
-                    <div className={boxIcon}>
-                        <img src={cartIcon} alt='' />
+                    <div
+                        className={boxIcon}
+                        onClick={handleShowDetailProductSideBar}
+                    >
+                        <LiaEyeSolid
+                            style={{
+                                fontSize: '23px'
+                            }}
+                        />
                     </div>
                 </div>
             </div>

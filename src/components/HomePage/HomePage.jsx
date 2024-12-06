@@ -3,7 +3,6 @@ import Banner from '@components/Banner/Banner';
 import Info from '@components/Info/Info';
 import AdvanceHeadling from '@components/AdvanceHeadling/AdvanceHeadling';
 import HeadingListProducts from '@components/HeadingListProduct/HeadingListProducts';
-import { useEffect } from 'react';
 import { getProducts } from '@/apis/productsService';
 import PopularProduct from '@components/PopularProduct/PopularProduct';
 import { useState } from 'react';

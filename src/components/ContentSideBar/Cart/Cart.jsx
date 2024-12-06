@@ -79,7 +79,7 @@ function Cart() {
                     <div>
                         <div className={total}>
                             <p>SUBTOTAL:</p>
-                            <p className={price}>${subTotal}</p>
+                            <p className={price}>${subTotal.toFixed(2)}</p>
                         </div>
 
                         <div className={boxBtn}>

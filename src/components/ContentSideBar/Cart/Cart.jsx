@@ -1,13 +1,13 @@
+import { SideBarContext } from '@/contexts/SideBarProvider';
+import Button from '@components/Button/Button';
 import HeaderSideBar from '@components/ContentSideBar/components/HeaderSidebar/HeaderSideBar';
 import ItemProduct from '@components/ContentSideBar/components/ItemProduct/ItemProduct';
-import { PiShoppingCartLight } from 'react-icons/pi';
-import styles from './styles.module.scss';
-import Button from '@components/Button/Button';
-import { useContext } from 'react';
-import { SideBarContext } from '@/contexts/SideBarProvider';
 import LoadingTextCommon from '@components/LoadingTextCommon/LoadingTextCommon';
 import cls from 'classnames';
+import { useContext } from 'react';
+import { PiShoppingCartLight } from 'react-icons/pi';
 import { useNavigate } from 'react-router-dom';
+import styles from './styles.module.scss';
 
 function Cart() {
     const {
